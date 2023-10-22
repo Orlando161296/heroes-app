@@ -60,13 +60,13 @@ export class NewPageComponent implements OnInit{
 
   }
 
-  onSubmit():void{
+   onSubmit():void{
     if(this.heroForm.invalid) return;
 
     if( this.currentHero.id ){
       this.heroesService.updateHero( this.currentHero )
       .subscribe( hero => {
-        this.showSnabkbar(`${ hero.superhero} updated!`)
+        this.showSnabkbar(`Actualización a ${ hero.superhero} realizada con exito!`)
       });
 
       return;
@@ -74,8 +74,8 @@ export class NewPageComponent implements OnInit{
 
     this.heroesService.addHero( this.currentHero)
     .subscribe(hero =>{
-      this.router.navigate(['/heroes/edit', hero.id]);
-      this.showSnabkbar(`${ hero.superhero} updated!`);
+      this.router.navigate(['/heroes/edit']),
+      this.showSnabkbar(`Héroe nuevo agregado con exito ${ hero.superhero} `);
     })
 
   }

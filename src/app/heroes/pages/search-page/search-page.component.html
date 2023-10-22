@@ -24,6 +24,27 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  {{ selectedHero | json}}
+  <!-- <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title>{{ hero.alter_ego}}</mat-card-title>
+      <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="hero | heroImage"  [alt]="hero.superhero" mat-card-image>
+  </mat-card> -->
+
+
+  <mat-card  *ngIf="selectedHero" class="col-12 sm:col-6">
+    <mat-card-header>
+        <mat-card-title>{{ selectedHero.alter_ego }}</mat-card-title>
+        <mat-card-subtitle>{{ selectedHero.superhero }}</mat-card-subtitle>
+        <img  [src]="selectedHero | heroImage" [alt]="selectedHero.superhero">
+    </mat-card-header>
+    <button
+    mat-stroked-button
+    class="btn btn-primary mt-2"
+    (click)="goToHero(selectedHero.id)">
+      Ir a pagina del Heroe
+    </button>
+  </mat-card>
 
 </div>

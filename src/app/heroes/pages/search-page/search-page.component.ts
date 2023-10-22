@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Hero } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -13,6 +14,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class SearchPageComponent {
 
   public searchInput = new FormControl('');
+
+  private router = inject( Router );
 
   public heroes: Hero[] = [];
   public selectedHero?: Hero;
@@ -40,6 +43,12 @@ export class SearchPageComponent {
     this.searchInput.setValue(hero.superhero);
     this.selectedHero = hero;
   }
+
+
+  goToHero( id: string ):void{
+    this.router.navigateByUrl(`heroes/${id}`)
+  }
+
 
 
 }
